@@ -16,7 +16,7 @@ Using:
 
         To get a specific advertisement, send a GET request to /api/caradverts/{id}.
 
-        To update an advertisement, send a PUT request to /api/caradverts/{id} with the JSON body of the advertisement.
+        To update an advertisement, send a PUT request to /api/caradverts with the JSON body of the advertisement.
 
         To delete an advertisement, send a DELETE request to /api/caradverts/{id}.
 

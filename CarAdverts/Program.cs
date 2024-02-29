@@ -5,6 +5,7 @@ using CarAdverts.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Sqlite;
 
 internal class Program
 {
@@ -12,10 +13,16 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        var connectionString = builder.Configuration.GetConnectionString("DefaultConnection"); // need install sql
+        builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-        //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-        //options.UseSqlServer(connectionString));
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAnyOrigin", builder =>
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader());
+        });
 
         builder.Services.AddScoped<ICarAdvertService, CarAdvertService>();
         builder.Services.AddScoped<ICarAdvertRepository, CarAdvertRepository>();

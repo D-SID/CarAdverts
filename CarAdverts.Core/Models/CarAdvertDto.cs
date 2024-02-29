@@ -1,0 +1,14 @@
+﻿using CarAdverts.Core.Enums;
+
+namespace CarAdverts.Core.Models;
+
+public class CarAdvertDto
+{
+    public int Id { get; set; }
+    public string Title { get; set; } = string.Empty;
+    public FuelType Fuel { get; set; }
+    public int Price { get; set; }
+    public bool New { get; set; }
+    public int? Mileage { get; set; }
+    public DateTime? FirstRegistration { get; set; }
+}
